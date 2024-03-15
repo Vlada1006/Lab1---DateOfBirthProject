@@ -17,14 +17,21 @@
             <RowDefinition Height="60*"/>
             <RowDefinition Height="76*"/>
         </Grid.RowDefinitions>
-        <Label Grid.ColumnSpan="1" HorizontalAlignment="Left" Margin="10,5" VerticalAlignment="Center" Content="Виберіть дату народження" FontSize="19" FontWeight="Bold"/>
-        <DatePicker x:Name ="datePicker" Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Margin="14,3" Height="30" FontSize="15" FontWeight="DemiBold"></DatePicker>
-        <Button Content="Показати мій вік"  Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="10,3" VerticalAlignment="Top" Height="30" Width="110" Click="Button_Click" FontWeight="DemiBold"/>
-        <TextBlock x:Name="ageTextBlock" Text="Вам..." Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Margin="13,10" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="19" FontWeight="Bold"/>
-        <Label Content="Ваш знак зодіаку :" Grid.Row="2" Grid.ColumnSpan="2" FontSize="15" Margin="10,0,-10,142" Grid.RowSpan="2"></Label>
-        <TextBlock x:Name="dayZodiakTextBlock" Grid.Row="2" HorizontalAlignment="Left" Margin="151,5,0,15" FontSize="15" ></TextBlock>
-        <Label Content="Ви народились у рік : " Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="15"></Label>
-        <TextBlock x:Name="yearTextBlock" Margin="170,0,428,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center" Grid.ColumnSpan="2" FontSize="15"/>
+        <Label Grid.ColumnSpan="1" HorizontalAlignment="Left" Margin="0,58,0,0" VerticalAlignment="Top" Content="Виберіть дату народження" FontSize="19" FontWeight="Bold" Grid.RowSpan="2"/>
+        <DatePicker x:Name ="datePicker" Grid.Column="1" VerticalAlignment="Top" Margin="26,65,220,0" Height="30" FontSize="15" FontWeight="DemiBold" Grid.RowSpan="2"/>
+        <Button Content="Показати мій вік"  Grid.Row="1" HorizontalAlignment="Left" Margin="224,0,0,0" VerticalAlignment="Center" Height="30" Width="110" Click="Button_Click" FontWeight="DemiBold" Grid.ColumnSpan="2"/>
+        <TextBlock x:Name="ageTextBlock" Text="Вам..." Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" Margin="14,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="19" FontWeight="Bold"/>
+        <Label Content="Ваш знак зодіаку :" Grid.Row="3" Grid.ColumnSpan="2" FontSize="15" Margin="10,20,-10,10"/>
+        <TextBlock x:Name="dayZodiacTextBlock" Text =" ikyujthgrdfsf" Grid.Row="3" HorizontalAlignment="Left" Margin="145,25,0,25" FontSize="15" ></TextBlock>
+        <Label Content="Ви народились у рік : " Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="15"></Label>
+        <TextBlock x:Name="yearZodiacTextBlock" Text =" hsyug" Margin="175,0,423,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Center" Grid.ColumnSpan="2" FontSize="15"/>
+        <Label Content="Введіть свої дані"></Label>
+        <Label Content="Ім'я" Margin="0,18,258,18"/>
+        <Label Content="Прізвище" Grid.ColumnSpan="2" Margin="188,18,321,96" Grid.RowSpan="2"></Label>
+        <Label Content="Електроннa пошта" Margin="134,18,84,96" Grid.RowSpan="2" Grid.Column="1"/>
+        <TextBox HorizontalAlignment="Left" Margin="33,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Width="120"/>
+        <TextBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="257,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Width="120"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Margin="267,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Width="120"/>
 
 
     </Grid>
