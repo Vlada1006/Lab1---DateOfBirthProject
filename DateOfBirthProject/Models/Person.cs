@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace DateOfBirthProject
+namespace DateOfBirthProject.Models
 {
     public class Person
     {
@@ -14,7 +14,28 @@ namespace DateOfBirthProject
         private string _surname;
         private string _email;
         private DateTime _birthday;
-        private bool _isAdult;
+
+        public Person(string name, string surname, string email, DateTime birthday)
+        {
+            _name = name;
+            _surname = surname;
+            _email = email;
+            _birthday = birthday;
+        }
+
+        public Person(string name, string surname, string email)
+             : this(name, surname, email, DateTime.MinValue)
+        {
+        }
+
+        public Person(string name, string surname, DateTime birthday)
+            : this(name, surname, "", birthday)
+        {
+        }
+
+        public Person() : this("", "", "", DateTime.MinValue) { }
+
+
         public string Name
         {
             get { return _name; }
@@ -36,30 +57,6 @@ namespace DateOfBirthProject
         { get { return _birthday; }
             set { _birthday = value; }
         }
-
-        public Person(string name, string surname, string email, DateTime birthday)
-        {
-            Initialize(name, surname, email, birthday);
-        }
-
-        public Person(string name, string surname, string email)
-        {
-            Initialize(name, surname, email, DateTime.MinValue);
-        }
-
-        public Person(string name, string surname, DateTime birthday)
-        {
-            Initialize(name, surname, null, birthday);
-        }
-
-        private void Initialize(string name, string surname, string email, DateTime birthday)
-        {
-            Name = name;
-            Surname = surname;
-            Email = email;
-            Birthday = birthday;
-        }
-
 
         public bool IsAdult
         {
@@ -84,21 +81,26 @@ namespace DateOfBirthProject
 
         private bool CalculateIsAdult()
         {
-            DateTime currentDate = DateTime.Today;
-            int age = currentDate.Year - SelectedDate.Year;
-            if (Birthday > SelectedDate.AddYears(-age))
+            if (PersonAge() >= 18)
             {
-                age--;
+                return true;
             }
-            return age >= 18;
+            return false;
+        }
+
+        private int PersonAge()
+        {
+            int res = DateTime.Now.Year - this._birthday.Year;
+            if (DateTime.Now.DayOfYear < this._birthday.DayOfYear) res -= 1;
+            return res;
+
         }
 
         private bool CalculateIsBirthday()
         {
-            DateTime currentDate = DateTime.Today;
-            if (SelectedDate.Day == currentDate.Day && SelectedDate.Month == currentDate.Month)
+            if (Birthday.Day == DateTime.Now.Day && Birthday.Month == DateTime.Now.Month)
             {
-               return Birthday.Day == DateTime.Today.Day && Birthday.Month == DateTime.Today.Month;
+                return true;
             }
             return false;
         }
