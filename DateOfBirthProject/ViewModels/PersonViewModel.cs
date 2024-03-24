@@ -9,6 +9,10 @@ using DateOfBirthProject.Models;
 using DateOfBirthProject.Views;
 using DateOfBirthProject.Tools;
 using System.Diagnostics;
+using DateOfBirthProject.Tools.Exceptions;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Windows.Documents;
+using System.Text.RegularExpressions;
 
 namespace DateOfBirthProject.ViewModels
 {
@@ -16,10 +20,9 @@ namespace DateOfBirthProject.ViewModels
     {
         #region Fields
         private Person _person = new Person();
-        //private Person _person;
         private RelayCommand<object> _proceedCommand;
-        private string _info1 = "";
-        private string _info2 = "";
+        private string _enteredData = "";
+        private string _calculatedData = "";
         private bool _isEnabled = true;
         #endregion
 
@@ -81,25 +84,25 @@ namespace DateOfBirthProject.ViewModels
         }
 
 
-        public string Info1
+        public string EnteredData
         {
             set
             {
-                _info1 = value;
-                OnPropertyChanged("Info1");
+                _enteredData = value;
+                OnPropertyChanged("EnteredData");
             }
-            get { return _info1; }
+            get { return _enteredData; }
         }
 
 
-        public string Info2
+        public string CalculatedData
         {
             set
             {
-                _info2 = value;
-                OnPropertyChanged("Info2");
+                _calculatedData = value;
+                OnPropertyChanged("CalculatedData");
             }
-            get { return _info2; }
+            get { return _calculatedData; }
         }
 
         
@@ -120,18 +123,17 @@ namespace DateOfBirthProject.ViewModels
             IsEnabled = false;
             await Task.Run(() =>
             {
-              
-                
-                if (Birthday.CompareTo(DateTime.Now) > 0)
+                try
                 {
-                    MessageBox.Show("Seems, like you haven't even been born yet -_-");
+                   ExceptionValidation();
                 }
-                else if (DateTime.Now.Year - Birthday.Year > 136)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("C`mon, it can`t be true");
+                    MessageBox.Show(ex.Message);
+                    IsEnabled = true;
+                    return;
                 }
-                else
-                {
+
                     if (IsBirthday)
                     {
                        
@@ -140,23 +142,64 @@ namespace DateOfBirthProject.ViewModels
 
                     Task.Delay(2000).Wait();
 
-                    Info1 = $"First name: {Name} \nLast name: {Surname}\n" +
+                    EnteredData = $"First name: {Name}\n Last name: {Surname}\n" +
                     $"Birthday: {Birthday.Date.ToString("dd/MM/yyyy")} \nEmail: {Email}";
-                    Info2 = $"IsAdult: {IsAdult} \nSunSign: {SunSign}\n" +
-                    $"ChineseSign: {ChineseSign} \nIsBirthday: {IsBirthday}";
+                    CalculatedData = $"IsAdult: {IsAdult}\n SunSign: {SunSign}\n" +
+                    $"ChineseSign: {ChineseSign}\n IsBirthday: {IsBirthday}";
 
-                }
+                
 
             });
             IsEnabled = true;
         }
+
+        private void ExceptionValidation()
+        {
+            if (Birthday.CompareTo(DateTime.Now) > 0)
+            {
+                throw new DateInFutureException("Error!\n The birthday date can`t be in future");
+            }
+
+            if (DateTime.Now.Year - Birthday.Year > 135)
+            {
+                throw new DateInLatePastException("Error!\n The birthday date can`t be so far in past");
+            }
+
+            if (!Email.Contains("@"))
+            {
+                throw new InvalidEmailAddressException("Error!\n Email must have @ symbol");
+            }
+
+            if (!Email.Contains("gmail.com") && !Email.Contains("yahoo.com") && !Email.Contains("outlook.com") && !Email.Contains("ukr.net"))
+            {
+                throw new InvalidEmailAddressException("Error!\n The domain is not recognised");
+            }
+
+            if (!Char.IsUpper(Name[0]) || !Char.IsUpper(Surname[0]))
+            {
+                throw new NotFoundCapitalLetterInBeginningException("Error!\n You are supposed to put capital letter in the beginning of your name and surname");
+            }
+
+            if ((Name.Length < 2 || Name.Length > 20) || (Surname.Length < 2 || Surname.Length > 20))
+            {
+                throw new AmountOfLettersException("Error!\n Your name and surname can`t be shorter that 2 and longer that 20 letters");
+            }
+
+            if (Regex.IsMatch(Name, @"[.,?!_*#@$%^&`~'<>;:""]") || Regex.IsMatch(Surname, @"[.,?!_*#@$%^&`~'<>;:""]"))
+            {
+                throw new UnnecessaryExtraCharactersException("Error!\n Your name and surname can`t contain any characters except dash (-)");
+            }
+
+            if(Name.Contains(" ") || Surname.Contains(" "))
+            {
+                throw new UnnecessaryExtraCharactersException("Error!\n Your name and surname can`t contain white spaces");
+            }
+        }
         private bool CanExecute(object obj)
         {
             //return true;
-            return !String.IsNullOrWhiteSpace(_person.Name) &&
-                !String.IsNullOrWhiteSpace(_person.Surname) &&
-                (DateTime.MinValue != _person.Birthday) &&
-                !String.IsNullOrWhiteSpace(_person.Email);
+            return !string.IsNullOrWhiteSpace(_person.Name.Trim()) && !string.IsNullOrWhiteSpace(_person.Surname.Trim()) 
+                   && _person.Birthday != DateTime.MinValue && !string.IsNullOrWhiteSpace(_person.Email);
         }
 
         protected virtual void OnPropertyChanged(string propertyName)

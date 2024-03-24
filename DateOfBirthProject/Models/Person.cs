@@ -164,7 +164,7 @@ namespace DateOfBirthProject.Models
 
         private string CalculateChineseSign(DateTime selectedDate)
         {
-            string[] signsArray = ["Мавпи", "Півня", "Собаки", "Свині", "Криси", "Бика", "Тигра", "Кролика", "Дракона", "Змії", "Коня", "Вівці"];
+            string[] signsArray = ["Мавпа", "Півень", "Собака", "Свиня", "Криса", "Бик", "Тигр", "Кролик", "Дракон", "Змія", "Кінь", "Вівця"];
 
             int signCount = selectedDate.Year % 12;
 
