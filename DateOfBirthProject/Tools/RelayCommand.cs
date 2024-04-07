@@ -9,12 +9,9 @@ namespace DateOfBirthProject.Tools
 {
     public class RelayCommand<T> : ICommand
     {
-        #region Fields
         readonly Action<T> _execute;
         readonly Predicate<T> _canExecute;
-        #endregion
 
-        #region Constructors
         /// <summary>
         /// Initializes a new instance/>.
         /// </summary>
@@ -35,10 +32,6 @@ namespace DateOfBirthProject.Tools
             _execute = execute ?? throw new ArgumentNullException(nameof(execute));
             _canExecute = canExecute;
         }
-
-        #endregion
-
-        #region ICommand Members
 
         ///<summary>
         ///Defines the method that determines whether the command can execute in its current state.
@@ -69,7 +62,5 @@ namespace DateOfBirthProject.Tools
         {
             _execute((T)parameter);
         }
-
-        #endregion
     }
 }

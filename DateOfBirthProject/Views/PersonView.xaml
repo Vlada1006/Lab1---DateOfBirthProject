@@ -4,10 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DateOfBirthProject.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" IsEnabled="{Binding IsEnabled, UpdateSourceTrigger=PropertyChanged}">
+             mc:Ignorable="d" d:DesignWidth="800" IsEnabled="{Binding IsEnabled, UpdateSourceTrigger=PropertyChanged}" Height="547">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
@@ -19,25 +19,65 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="0.5*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100*"></ColumnDefinition>
-            <ColumnDefinition Width="184*"></ColumnDefinition>
-            <ColumnDefinition Width="315*"></ColumnDefinition>
-            <ColumnDefinition Width="201*"></ColumnDefinition>
+            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="0.5*"></ColumnDefinition>
+            <ColumnDefinition Width="5*"></ColumnDefinition>
+            <ColumnDefinition Width="5*"></ColumnDefinition>
+            <ColumnDefinition Width="0.5*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Button Name="ProceedButton" Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="1" Margin="55,4,5,3" Command ="{Binding ProceedCommand}" Content="Proceed" Foreground="#FF050505" Background="#FFE58A8A"></Button>
-        <Label Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Name" Height="26" Width="66" Margin="55,0,0,0"></Label>
-        <TextBox Name="FirstNameTextBox" Grid.Row="1" Grid.Column="2" Margin="5,3,5,7" Text="{Binding Name}"/>
-        <Label Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Surname" Height="26" Width="56" Margin="55,0,0,0"></Label>
-        <TextBox Name="LastNameTextBox" Grid.Row="2" Grid.Column="2" Margin="5,2,4,9" Text="{Binding Surname}"/>
-        <Label Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Birthday Date" Height="26" Width="97" Margin="55,0,0,0"></Label>
-        <DatePicker Name="BDpicker" Margin="5,6,5,3" Grid.Row="3" Grid.Column="2" SelectedDate="{Binding Birthday, Mode=OneWayToSource}"></DatePicker>
-        <Label Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Email" Height="26" Width="40" Margin="55,6,0,0"></Label>
-        <TextBox Name="EmailTextBox" Grid.Row="4" Grid.Column="2" Margin="5,8,5,3" Text="{Binding Email}"/>
-        <Label Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Entered data:" Margin="55,3,0,0" Height="26" Width="80"/>
-        <TextBlock Name="EnteredData"  Grid.Row="8" Grid.Column="1" Margin="60,4,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding EnteredData, Mode=OneWay}" Height="86" Width="167" Grid.RowSpan="3" Grid.ColumnSpan="2"/>
-        <Label Grid.Row="7" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Calculated data:" Margin="134,3,0,0" Height="26" Width="93" RenderTransformOrigin="0.476,0.602"/>
-        <TextBlock Name="CalculatedData"  Grid.Row="8" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding CalculatedData, Mode=OneWay}" Height="86" Width="127" Margin="140,4,0,0" Grid.RowSpan="3"/>
+        <!-- Cool comment butt on -->
+        <Button Name="ProceedButton" Grid.Row="13" 
+                Grid.ColumnSpan="2" Grid.Column="4" 
+                
+                Margin="73,28,120,3"
+                Command ="{Binding ProceedCommand}"
+        Content="Proceed" Grid.RowSpan="2"></Button>
+        <Label Grid.Row="10" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Name" Grid.ColumnSpan="2" Margin="20,16,0,0" Grid.RowSpan="2"/>
+        <TextBox Name="FirstNameTextBox" Grid.Row="10" Grid.Column="1" Margin="84,11,61,38" Text="{Binding Name}" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <Label Grid.Row="11" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Surname" Grid.ColumnSpan="2" Margin="20,10,0,0"/>
+        <TextBox Name="LastNameTextBox" Grid.Row="11" Grid.Column="1" Margin="84,12,62,36" Text="{Binding Surname}" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+        <Label Grid.Row="12" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Birthday Date" Grid.ColumnSpan="2" Margin="19,15,0,0" Grid.RowSpan="2"/>
+        <DatePicker Name="BDpicker" Margin="84,15,63,34" Grid.Row="12" Grid.Column="1" SelectedDate="{Binding Birthday, Mode=OneWayToSource}" Grid.ColumnSpan="2" Grid.RowSpan="2"></DatePicker>
+        <Label Grid.Row="13" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Email" Margin="20,12,0,0" Grid.ColumnSpan="2"/>
+        <TextBox Name="EmailTextBox" Grid.Row="13" Grid.Column="1" Margin="84,13,63,18" Text="{Binding Email}" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <Label Grid.Row="9" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Entered data:" Margin="22,12,0,0" Grid.ColumnSpan="2"/>
+        <TextBlock Name="EnteredData"  Grid.Row="10" Grid.Column="4" Margin="5,8,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding EnteredData, Mode=OneWay}" Height="68" Grid.RowSpan="2"/>
+        <Label Grid.Row="9" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Calculated data:" Margin="75,13,0,0"/>
+        <TextBlock Name="CalculatedData"  Grid.Row="9" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding CalculatedData, Mode=OneWay}" Margin="74,39,0,0" Grid.RowSpan="3" Height="76"/>
+        <DataGrid Name="Database" ItemsSource="{Binding}" AutoGenerateColumns="False" Grid.RowSpan="8" Grid.ColumnSpan="7" Sorting="sort_by_number" Margin="0,-4,0,39">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
+                <DataGridTextColumn Header="Surname" Binding="{Binding Surname}" Width="*"/>
+                <DataGridTextColumn Header="Birthday" Binding="{Binding Birthday}" Width="80"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"/>
+                <DataGridTextColumn Header="IsAdult" Binding="{Binding IsAdult}" Width="50"/>
+                <DataGridTextColumn Header="SunSign" Binding="{Binding SunSign}" Width="90"/>
+                <DataGridTextColumn Header="ChineseSign" Binding="{Binding ChineseSign}" Width="90"/>
+                <DataGridTextColumn Header="IsBirthday" Binding="{Binding IsBirthday}" Width="65"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Enter filter word" Margin="7,10,50,1" Grid.Row="7" Grid.ColumnSpan="2"/>
+        <TextBox Name="txtFilter" Grid.Row="7" Margin="88,14,82,3" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <Label Content="Find type of filter" Margin="27,12,57,38" Grid.RowSpan="2" Grid.Column="4" Grid.Row="7"/>
+        <ComboBox Name="cmbFilterType" Grid.Row="7" Grid.Column="4" Margin="150,14,146,3" SelectionChanged="FilterType_SelectionChanged" Grid.ColumnSpan="2">
+            <ComboBoxItem Content="No filter"/>
+            <ComboBoxItem Content="Name"/>
+            <ComboBoxItem Content="Surname"/>
+            <ComboBoxItem Content="Birthday"/>
+            <ComboBoxItem Content="Email"/>
+            <ComboBoxItem Content="IsAdult"/>
+            <ComboBoxItem Content="SunSign"/>
+            <ComboBoxItem Content="ChineseSign"/>
+            <ComboBoxItem Content="IsBirthday"/>
+        </ComboBox>
+        <Button Content="Add Person" Click="AddPersonButton_Click" Grid.Row="8" Grid.Column="1" Margin="113,21,69,33" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+        <Button Content="Delete Person" Click="DeleteButton_Click" Grid.Row="8" Grid.Column="4" Margin="129,17,7,33" Grid.RowSpan="2"/>
     </Grid>
 </UserControl>

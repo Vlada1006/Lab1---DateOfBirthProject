@@ -15,6 +15,30 @@ namespace DateOfBirthProject.Models
         private string _email;
         private DateTime _birthday;
 
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+
+        public string Surname
+        {
+            get { return _surname; }
+            set { _surname = value; }
+        }
+
+        public string Email
+        {
+            get { return _email; }
+            set { _email = value; }
+        }
+
+        public DateTime Birthday
+        {
+            get { return _birthday; }
+            set { _birthday = value; }
+        }
+
         public Person(string name, string surname, string email, DateTime birthday)
         {
             _name = name;
@@ -34,29 +58,6 @@ namespace DateOfBirthProject.Models
         }
 
         public Person() : this("", "", "", DateTime.MinValue) { }
-
-
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
-
-        public string Surname
-        { get { return _surname; }
-            set { _surname = value; }
-        }
-
-        public string Email
-        {
-            get { return _email; }
-            set { _email = value; }
-        }
-
-        public DateTime Birthday
-        { get { return _birthday; }
-            set { _birthday = value; }
-        }
 
         public bool IsAdult
         {
@@ -174,6 +175,8 @@ namespace DateOfBirthProject.Models
            
         }
     }
+
+   
 }
 
 

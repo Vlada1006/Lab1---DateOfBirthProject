@@ -18,19 +18,15 @@ namespace DateOfBirthProject.ViewModels
 {
     internal class PersonViewModel : INotifyPropertyChanged
     {
-        #region Fields
         private Person _person = new Person();
         private RelayCommand<object> _proceedCommand;
         private string _enteredData = "";
         private string _calculatedData = "";
         private bool _isEnabled = true;
-        #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-
-
-        #region Properties
+        internal Person Person { get => _person; set => _person = value; }
 
         public bool IsEnabled
         {
@@ -105,10 +101,6 @@ namespace DateOfBirthProject.ViewModels
             get { return _calculatedData; }
         }
 
-        
-
-        #endregion
-
         public RelayCommand<object> ProceedCommand
         {
             get
@@ -142,10 +134,10 @@ namespace DateOfBirthProject.ViewModels
 
                     Task.Delay(2000).Wait();
 
-                    EnteredData = $"First name: {Name}\n Last name: {Surname}\n" +
+                    EnteredData = $"First name: {Name}\nLast name: {Surname}\n" +
                     $"Birthday: {Birthday.Date.ToString("dd/MM/yyyy")} \nEmail: {Email}";
-                    CalculatedData = $"IsAdult: {IsAdult}\n SunSign: {SunSign}\n" +
-                    $"ChineseSign: {ChineseSign}\n IsBirthday: {IsBirthday}";
+                    CalculatedData = $"IsAdult: {IsAdult}\nSunSign: {SunSign}\n" +
+                    $"ChineseSign: {ChineseSign}\nIsBirthday: {IsBirthday}";
 
                 
 
@@ -153,7 +145,7 @@ namespace DateOfBirthProject.ViewModels
             IsEnabled = true;
         }
 
-        private void ExceptionValidation()
+        public void ExceptionValidation()
         {
             if (Birthday.CompareTo(DateTime.Now) > 0)
             {
@@ -195,7 +187,7 @@ namespace DateOfBirthProject.ViewModels
                 throw new UnnecessaryExtraCharactersException("Error!\n Your name and surname can`t contain white spaces");
             }
         }
-        private bool CanExecute(object obj)
+        public  bool CanExecute(object obj)
         {
             //return true;
             return !string.IsNullOrWhiteSpace(_person.Name.Trim()) && !string.IsNullOrWhiteSpace(_person.Surname.Trim()) 
