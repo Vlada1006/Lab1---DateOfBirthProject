@@ -38,7 +38,7 @@ namespace DateOfBirthProject.Views
         }
 
 
-        private void sort_by_number(object sender, DataGridSortingEventArgs e)
+        private void sort_by_email_number(object sender, DataGridSortingEventArgs e)
         {
             if (e.Column.Header.ToString() == "Email")
             {
@@ -78,7 +78,7 @@ namespace DateOfBirthProject.Views
 
         private void FilterType_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string filterText = txtFilter.Text;
+            string filterText = textFilter.Text;
             ObservableCollection<Person> people = database.GetBase();
 
             ComboBoxItem selectedItem = (ComboBoxItem)cmbFilterType.SelectedItem;
@@ -105,7 +105,7 @@ namespace DateOfBirthProject.Views
                         }
                         else
                         {
-                            MessageBox.Show("Invalid date format. Please enter date in correct format.");
+                            MessageBox.Show("Invalid date format.\n Please enter date in correct format.");
                         }
                         break;
                     case "Email":
@@ -121,7 +121,7 @@ namespace DateOfBirthProject.Views
                         }
                         else
                         {
-                            MessageBox.Show("Invalid value for IsAdult. Please enter 'true' or 'false'.");
+                            MessageBox.Show("Invalid value for IsAdult filter.\n Please enter 'true' or 'false'.");
                         }
                         break;
                     case "SunSign":
@@ -141,7 +141,7 @@ namespace DateOfBirthProject.Views
                         }
                         else
                         {
-                            MessageBox.Show("Invalid value for IsBirthday. Please enter 'true' or 'false'.");
+                            MessageBox.Show("Invalid value for IsBirthday filter.\n Please enter 'true' or 'false'.");
                         }
                         break;
                     default:
@@ -184,7 +184,7 @@ namespace DateOfBirthProject.Views
                     Database.ItemsSource = null;
                     Database.ItemsSource = database.GetBase();
 
-                    MessageBox.Show($"Selected person: {selectedPerson.Name} {selectedPerson.Surname} deleted.");
+                    MessageBox.Show($"Selected person: {selectedPerson.Name} {selectedPerson.Surname} is deleted.");
                 }
                 else
                 {
@@ -196,6 +196,7 @@ namespace DateOfBirthProject.Views
                 MessageBox.Show("Please select a person to delete.");
             }
         }
+
 
     }
 

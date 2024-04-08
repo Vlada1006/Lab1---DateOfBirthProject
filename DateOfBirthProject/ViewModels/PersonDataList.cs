@@ -23,22 +23,15 @@ namespace DateOfBirthProject.ViewModels
 
         internal List<Person> People
         {
-            get
-            {
-                return _people;
-            }
-            set
-            {
-
-                _people = value;
-            }
+            get { return _people;}
+            set { _people = value;}
         }
 
         public PersonDataList()
         {
             if (!File.Exists("people.json"))
             {
-                CreatePeople();
+                CreatePeopleList();
                 Serialize();
             }
             else
@@ -47,11 +40,11 @@ namespace DateOfBirthProject.ViewModels
             }
         }
 
-        private void CreatePeople()
+        private void CreatePeopleList()
         {
             People = new List<Person>();
 
-            DateTime max = new DateTime(1950, 1, 1);
+            DateTime max = new DateTime(1944, 1, 1);
             Random random = new Random();
             int range = (DateTime.Today - max).Days;
 
@@ -60,7 +53,7 @@ namespace DateOfBirthProject.ViewModels
                                "Scarlett", "Henry", "Avery", "Jackson", "Mila", "Carter", "Ella", "Sebastian", "Abigail", "Gabriel", "Sofia", "Owen"};
 
 
-        string[] surnames = { "Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Rodriguez", "Martinez", "Hernandez",
+            string[] surnames = { "Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Rodriguez", "Martinez", "Hernandez",
                                   "Lopez", "Gonzalez", "Wilson", "Anderson", "Thomas", "Taylor", "Moore", "Jackson", "Martin", "White", "Lee", "Harris",
                                   "Clark", "Lewis", "Walker", "Hall", "Allen", "Young", "King", "Wright", "Scott", "Green", "Adams", "Nelson"};
 
@@ -80,7 +73,7 @@ namespace DateOfBirthProject.ViewModels
         private void Serialize()
         {
 
-            File.WriteAllText("people.json", (string)JsonConvert.SerializeObject(People));
+            File.WriteAllText("peopleList.json", (string)JsonConvert.SerializeObject(People));
             
             XmlSerializer serializer = new XmlSerializer(typeof(List<Person>));
             using (FileStream s = new FileStream("people.xml", FileMode.Create))
@@ -92,7 +85,7 @@ namespace DateOfBirthProject.ViewModels
 
         private void Deserialize()
         {
-            using (StreamReader reader = new StreamReader("people.json"))
+            using (StreamReader reader = new StreamReader("peopleList.json"))
             {
                 string json = reader.ReadToEnd();
                 People = JsonConvert.DeserializeObject<List<Person>>(json);
@@ -106,7 +99,7 @@ namespace DateOfBirthProject.ViewModels
         
        public void UpdateDatabase(string EmailToRemove)
                 {
-                    string json = File.ReadAllText("people.json");
+                    string json = File.ReadAllText("peopleList.json");
                     List<Person> people = JsonConvert.DeserializeObject<List<Person>>(json);
 
                     Person personToDelete = people.Find(p => p.Email == EmailToRemove);
@@ -121,9 +114,9 @@ namespace DateOfBirthProject.ViewModels
 
                     string updatedJson = JsonConvert.SerializeObject(people, Formatting.Indented);
 
-                    File.WriteAllText("people.json", updatedJson);
+                    File.WriteAllText("peopleList.json", updatedJson);
 
-                    Console.WriteLine("Database updated successfully.");
+                
                 }
 
         

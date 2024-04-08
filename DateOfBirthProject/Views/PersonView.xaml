@@ -51,7 +51,7 @@
         <TextBlock Name="EnteredData"  Grid.Row="10" Grid.Column="4" Margin="5,8,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding EnteredData, Mode=OneWay}" Height="68" Grid.RowSpan="2"/>
         <Label Grid.Row="9" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Calculated data:" Margin="75,13,0,0"/>
         <TextBlock Name="CalculatedData"  Grid.Row="9" Grid.Column="5" HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding CalculatedData, Mode=OneWay}" Margin="74,39,0,0" Grid.RowSpan="3" Height="76"/>
-        <DataGrid Name="Database" ItemsSource="{Binding}" AutoGenerateColumns="False" Grid.RowSpan="8" Grid.ColumnSpan="7" Sorting="sort_by_number" Margin="0,-4,0,39">
+        <DataGrid Name="Database" ItemsSource="{Binding}" AutoGenerateColumns="False" Grid.RowSpan="8" Grid.ColumnSpan="7" Sorting="sort_by_email_number" Margin="0,-4,0,39">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
                 <DataGridTextColumn Header="Surname" Binding="{Binding Surname}" Width="*"/>
@@ -64,7 +64,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Enter filter word" Margin="7,10,50,1" Grid.Row="7" Grid.ColumnSpan="2"/>
-        <TextBox Name="txtFilter" Grid.Row="7" Margin="88,14,82,3" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <TextBox Name="textFilter" Grid.Row="7" Margin="88,14,82,3" Grid.ColumnSpan="2" Grid.Column="1"/>
         <Label Content="Find type of filter" Margin="27,12,57,38" Grid.RowSpan="2" Grid.Column="4" Grid.Row="7"/>
         <ComboBox Name="cmbFilterType" Grid.Row="7" Grid.Column="4" Margin="150,14,146,3" SelectionChanged="FilterType_SelectionChanged" Grid.ColumnSpan="2">
             <ComboBoxItem Content="No filter"/>
@@ -78,6 +78,6 @@
             <ComboBoxItem Content="IsBirthday"/>
         </ComboBox>
         <Button Content="Add Person" Click="AddPersonButton_Click" Grid.Row="8" Grid.Column="1" Margin="113,21,69,33" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
-        <Button Content="Delete Person" Click="DeleteButton_Click" Grid.Row="8" Grid.Column="4" Margin="129,17,7,33" Grid.RowSpan="2"/>
+        <Button Content="Delete Person" Click="DeleteButton_Click" Grid.Row="8" Grid.Column="4" Margin="130,20,225,34" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
     </Grid>
 </UserControl>
